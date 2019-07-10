@@ -1,4 +1,3 @@
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,6 +8,8 @@ import static org.junit.Assert.assertEquals;
 public class MatrixTransposerTest {
 
     private MatrixTransposer matrixTransposer;
+    private final String inputFileName = "inputFile.txt";
+    private final String outputFileName = "outputFile.txt";
 
     @Before
     public void setUp() {
@@ -17,8 +18,6 @@ public class MatrixTransposerTest {
 
     @Test
     public void transpose_success() throws IOException {
-        final String inputFileName = "successTestInputFile.txt";
-        final String outputFileName = "successTestOutputFile.txt";
         FileWriter fileWriter = new FileWriter(inputFileName);
         fileWriter.write("1 2 3 \n4 5 6 \n7 8 9 \n");
         fileWriter.close();
@@ -36,17 +35,20 @@ public class MatrixTransposerTest {
         }
 
         assertEquals("1 4 7 \n2 5 8 \n3 6 9 \n", outputFileContent.toString());
-
+        bufferedReader.close();
     }
 
     @Test(expected = IOException.class)
     public void transpose_matrixValidation() throws IOException {
-        final String inputFileName = "validationTestInputFile.txt";
         FileWriter fileWriter = new FileWriter(inputFileName);
         fileWriter.write("1 2 3 \n4 5 \n");
         fileWriter.close();
 
-        matrixTransposer.transpose(inputFileName, "validationTestOutputFile.txt");
+        matrixTransposer.transpose(inputFileName, outputFileName);
     }
 
+    @Test(expected = IOException.class)
+    public void transpose_fileDoesNotExist() throws IOException {
+        matrixTransposer.transpose(inputFileName, outputFileName);
+    }
 }

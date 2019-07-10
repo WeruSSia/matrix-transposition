@@ -14,6 +14,7 @@ public class MatrixTransposer {
             inputMatrix.add(line.split(" "));
             line = bufferedReader.readLine();
         }
+        bufferedReader.close();
     }
 
     private void writeTransposedMatrixToFile(String fileName) throws IOException {
