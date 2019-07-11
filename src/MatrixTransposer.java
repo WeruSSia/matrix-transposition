@@ -2,6 +2,13 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Responsible for transposing given matrix read from file and writing it to another file after validating its correctness.<br>
+ * <br>
+ * Input matrix in the input file must meet those requirements:<br>
+ * - elements of the matrix must be separated by " ",<br>
+ * - row sizes must be equal.
+ */
 public class MatrixTransposer {
     private List<String[]> inputMatrix = new ArrayList<>();
     private int firstArrayLength;
@@ -40,6 +47,13 @@ public class MatrixTransposer {
         }
     }
 
+    /**
+     * Reads input matrix from input file, then it checks if the matrix is correct (if row sizes are equal) and then writes transposed matrix to the output file.
+     *
+     * @param inputFileName  Name of an input file containing input matrix (to be transposed).
+     * @param outputFileName Name of an output file that will store output matrix (transposed input matrix).
+     * @throws IOException When something goes wrong with reading/writing to file or when input matrix is not correct (row sizes are not equal).
+     */
     public void transpose(String inputFileName, String outputFileName) throws IOException {
         readInputMatrixFromFile(inputFileName);
         validateMatrixSize();
