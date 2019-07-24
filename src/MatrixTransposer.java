@@ -9,8 +9,9 @@ import java.util.List;
  * - elements of the matrix must be separated by " ",<br>
  * - row sizes must be equal.
  */
+@SuppressWarnings("WeakerAccess")
 public class MatrixTransposer {
-    private List<String[]> inputMatrix = new ArrayList<>();
+    private final List<String[]> inputMatrix = new ArrayList<>();
     private int firstArrayLength;
 
     private void readInputMatrixFromFile(String fileName) throws IOException {
